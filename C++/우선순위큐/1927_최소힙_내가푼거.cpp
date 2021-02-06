@@ -29,11 +29,11 @@ void insert_minheap(int input) {
     }
 }
 
-int pop_minheap() {
+auto pop_minheap() {
     int cursor = minheap.size();
     if (!cursor) return 0;
     swap(minheap, 0, cursor---1);
-    int min = minheap[cursor];
+    auto min = minheap[cursor];
     int parent = 0;
     while (parent <= cursor/2-1) {
         int child = child(parent);
