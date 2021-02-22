@@ -1,32 +1,28 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-string a[20000];
-int n;
+#define s string
 
-bool compare(string a, string b) {
-    // 길이가 짧은 순서 우선
-    if (a.length() < b.length()) {
-        return 1;
-    }
-    else if (a.length() > b.length()) {
-        return 0;
-    }
-    // 길이가 같은 경우
-    else {
-        // c++의 string 라이브러리는 사전 순으로 비교 가능
-        return a < b;
-    }
+bool compare(s _1, s _2) {
+    if (_1.size() != _2.size())
+        return _1.size() < _2.size();
+    return _1 < _2;
 }
 
 int main(void) {
-    cin >> n;
-    for (int i=0; i<n; i++) {
-        cin >> a[i];
+    cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    int N; cin >> N;
+    s S[20000];
+    for (int i=0; i<N; i++)
+        cin >> S[i];
+    sort(S, S+N, compare);
+    cout << S[0] << "\n";
+    s pre = S[0];
+    for (int i=1; i<N; i++) {
+        if (pre != S[i])
+            cout << S[i] << "\n";
+        pre = S[i];
     }
-    sort(a, a+n, compare);
-    for (int i=0; i<n; i++) {
-        if (i>0 && a[i]==a[i-1]) continue;
-        else cout << a[i] << '\n';
-    }
+    return 0;
 }
