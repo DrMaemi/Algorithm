@@ -1,12 +1,13 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
+typedef long long ll;
 
 int K, N;
-long long* lans;
+ll* lans;
 
-int solve(long long low, long long high) {
-    long long mid, made;
+int solve(ll low, ll high) {
+    ll mid, made;
     while (low <= high) {
         made = 0;
         mid = (low+high)/2;
@@ -25,7 +26,7 @@ int solve(long long low, long long high) {
 
 int main(void) {
     cin >> K >> N;
-    lans = (long long*)malloc(sizeof(long long)*K);
+    lans = (ll*)malloc(sizeof(ll)*K);
     for (int i=0; i<K; i++) {
         cin >> lans[i];
     }
