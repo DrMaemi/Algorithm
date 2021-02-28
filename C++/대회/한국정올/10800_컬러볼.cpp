@@ -3,19 +3,10 @@
 #include <algorithm>
 using namespace std;
 #define V vector
-struct P { int c, s; };
+struct D { int i, c, s; };
+struct C { int ms, upt, pre; };
 
-int idx(V<P>& v, int s) {
-    int l = 0, r = v.size()-1;
-    while (l <= r) {
-        int m = (l+r)/2;
-        if (v[m].s < s) l = m+1;
-        else r = m-1;
-    }
-    return r;
-}
-
-bool compare(P _1, P _2) {
+bool cmps(D& _1, D& _2) {
     return _1.s < _2.s;
 }
 
@@ -23,16 +14,30 @@ int main() {
     cin.tie(0); cout.tie(0);
     ios::sync_with_stdio(0);
     int N; cin >> N;
-    V<P> v(N); V<int> r(N+1, 0);
-    for (int i=0; i<N; i++)
-        cin >> v[i].c >> v[i].s;
-    V<P> vv = v;
-    sort(vv.begin(), vv.end(), compare);
+    V<D> VD(N); V<C> VC(N+1, {0, 0, 0});
     for (int i=0; i<N; i++) {
-        for (int ii=0; ii<=idx(vv, v[i].s); ii++)
-            if (vv[ii].c != v[i].c)
-                r[i] += vv[ii].s;
-        cout << r[i] << "\n";
+        VD[i].i = i;
+        cin >> VD[i].c >> VD[i].s;
     }
+    sort(VD.begin(), VD.end(), cmps);
+    V<int> A(N);
+    int sum = 0, pre_sum = 0, pre = 0;
+    for (int i=0; i<N; i++) {
+        C& c = VC[VD[i].c];
+        if (c.ms < VD[i].s)
+            c.pre = c.upt;
+        c.ms = VD[i].s;
+        c.upt += c.ms;
+        if (pre < c.ms) {
+            A[VD[i].i] = sum-c.pre;
+            pre_sum = sum;
+        }
+        else
+            A[VD[i].i] = pre_sum-c.pre;
+        pre = c.ms;
+        sum += pre;
+    }
+    for (int r: A)
+        cout << r << "\n";
     return 0;
 }
