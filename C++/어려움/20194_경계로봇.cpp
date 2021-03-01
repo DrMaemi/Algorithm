@@ -1,11 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 int N, L, r, O[100000];
 int M[100000];
-//bool visited[100000];
 
 int dir(int s, int l) {
     return s-l ? -1 : 1;
@@ -19,10 +17,8 @@ void print_M() {
 }
 
 int main(void) {
-    /*
-    cin.tie(0); cout.tie(0);
-    ios::sync_with_stdio(0);
-    */
+    /* cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0); */
     cin >> N >> L >> r;
     int i;
     for (i=0; i<N; i++) cin >> O[i];
@@ -57,76 +53,35 @@ int main(void) {
         }
     }
     print_M();
-    vector<int> moved;
+    vector<int> mi;
     for (i=0; i<N; i++)
-        if (O[i] != M[i]) moved.push_back(i);
-
-    cout << "moved:\n";
-    for (int k=0; k<moved.size(); k++) {
-        cout << moved[k] << " ";
-    } cout << "\n";
-
-    int answer = 0;
-    int p = 0,  left = 0, right = 0;
-    for (int j=0; j<moved.size(); j++) {
-        i = moved[j];
-        answer += O[i]-p;
-        if (left == p) left = O[i]; p = O[i];
-        left = min(M[i], left); right = max(p, right);
-        printf("p: %d, left: %d, ", p, left);
-        if (j+1 != moved.size()) {
-            right = max(max(O[moved[j+1]], M[i]), right);
-            printf("right: %d\n", right);
-            if (p-left <= right-p) {
-                answer += 2*(p-left);
-                left = p;
-            }
-        }
-        else {
-            right = max(M[i], right);
-            printf("right: %d\n", right);
-            if (p-left <= right-p)
-                answer += 2*(p-left)+right-p;
-            else
-                answer += 2*(right-p)+p-left;
+        if (O[i] != M[i]) mi.push_back(i);
+    if (mi.empty()) {
+        cout << 0; return 0;
+    }
+    int p = 0, sum = 0, l = L, r = 0;
+    // int r = max(O[mi.back()], M[mi.back()]);
+    for (int i=0; i<mi.size()-1; i++) {
+        int ci = mi[i], ni = mi[i+1];
+        sum += O[ci]-p;
+        p = O[ci];
+        l = min(min(O[ci], M[ci]), l);
+        // r = max(M[ci], O[ni]);
+        //O[ni]-p+M[ci]-p;
+        if (abs(l-p) <= M[ni]-p) {
+            // printf("ci:%d | l:%d, r:%d, p:%d\n", ci, l, r, p);
+            sum += 2*abs(l-O[ci]);
+            l = L;
         }
     }
-    /*
-    vector<int> moved;
-    for (i=0; i<N; i++) 
-        if (O[i] != M[i]) moved.push_back(i);
-    int answer = 0;
-    if (!moved.empty()) {
-        int fr = moved.front(), ba = moved.back();
-        int ol = O[fr], ml = M[fr];
-        int oh = O[ba], mh = M[ba];
-        answer += oh;
-        int low = oh;
-        for (int j: moved) {
-            if (M[j] < O[j]) {
-                low = j; break;
-            }
-        }
-        answer += oh-
-    }
-    print_M();
-    */
-    /*
-    int p = 0, answer = 0;
-    for (i=0; i<N; i++) {
-        if (visited[i])
-            answer += abs(M[i]-p);
-        else if (O[i] != M[i])
-            answer += O[i]-p+abs(M[i]-O[i]);
-        int low = min(p, M[i]), high = max(O[i], M[i]);
-        p = M[i];
-        for (int j=i+1; j<N; j++) {
-            if (low <= O[j] && O[j] <= high)
-                visited[j] = 1;
-            else break;
-        }
-    }
-    */
-    cout << answer;
+    sum += O[mi.back()]-p;
+    p = O[mi.back()];
+    l = min(min(p, M[mi.back()]), l);
+    r = max(p, M[mi.back()]);
+    if (abs(l-p) <= abs(r-p))
+        sum += 2*abs(l-p)+abs(r-p);
+    else
+        sum += 2*abs(r-p)+abs(l-p);
+    cout << sum;
     return 0;
 }
