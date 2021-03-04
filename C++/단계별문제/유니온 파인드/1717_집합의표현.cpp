@@ -1,33 +1,32 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+#define V vector
 
 int N, M;
-vector<int> S;
+V<int> p;
 
 int P(int i) {
-    if (S[i] == i) return i;
-    return S[i] = P(S[i]);
+    if (p[i] == i) return i;
+    return p[i] = P(p[i]);
 }
 
 int main() {
-    cin.tie(0); cout.tie(0);
     ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
     cin >> N >> M;
-    S.resize(N+1);
-    for (int i=0; i<=N; i++)
-        S[i] = i;
+    p.resize(N);
+    for (int i=0; i<N; i++)
+        p[i] = i;
     while (M--) {
-        int k, u, v;
-        cin >> k >> u >> v;
-        if (k) {
-            if (P(u) == P(v))
-                cout << "YES\n";
-            else
-                cout << "NO\n";
-            continue;
-        }
-        S[P(u)] = P(v);
+        int o, u, v;
+        cin >> o >> u >> v;
+        if (!o)
+            p[P(u)] = P(v);
+        else if (P(u) == P(v))
+            cout << "YES\n";
+        else
+            cout << "NO\n";
     }
     return 0;
 }
