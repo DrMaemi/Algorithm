@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 using namespace std;
 
 int main() {
@@ -25,12 +26,14 @@ int main() {
         if (idx) p[i] = vi[idx-1];
     }
     cout << v.size() << "\n";
-    vector<int> out;
+    stack<int> out;
     int i = vi.back();
+    out.push(i);
     for (; p[i]!=i; i=p[i])
-        out.push_back(A[i]);
-    out.push_back(A[i]);
-    for (auto it=out.rbegin(); it!=out.rend(); it++)
-        cout << *it << " ";
+        out.push(p[i]);
+    while (!out.empty()) {
+        cout << A[out.top()] << " ";
+        out.pop();
+    }
     return 0;
 }
