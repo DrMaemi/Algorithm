@@ -1,18 +1,17 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-int N, K, W[100], V[100];
-int m[100001];
-
-int main(void) {
-    cin.tie(0); cout.tie(0);
+int main() {
     ios::sync_with_stdio(0);
-    cin >> N >> K;
-    for (int i=0; i<N; i++)
-        cin >> W[i] >> V[i];
-    for (int i=0; i<N; i++) for (int k=K; k>=1; k--)
-        if (W[i] <= k)
-            m[k] = max(m[k], m[k-W[i]]+V[i]);
-    cout << m[K];
+    cin.tie(0); cout.tie(0);
+    int N, K; cin >> N >> K;
+    vector<int> MZ(K+1);
+    while (N--) {
+        int w, v; cin >> w >> v;
+        for (int i=K; i>=w; i--)
+            MZ[i] = max(MZ[i], MZ[i-w]+v);
+    }
+    cout << MZ[K];
     return 0;
 }
