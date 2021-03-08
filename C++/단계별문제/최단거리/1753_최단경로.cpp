@@ -1,112 +1,54 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <climits>
 using namespace std;
-
-typedef pair<int, int> p;
-#define parent(x) (x-1)/2
-#define child(x) 2*x+1
-#define v first
-#define w second
-
-int V, E, start;
-vector<vector<p>> adj;
-vector<p> pq;
-int* dist;
-int* path;
-
-void swap(int i, int j) {
-    p temp = pq[i];
-    pq[i] = pq[j];
-    pq[j] = temp;
-}
-
-p pq_pop() {
-    int cursor = pq.size();
-    p _min = pq[0];
-    swap(0, cursor---1);
-    int parent = 0;
-    while (parent <= cursor/2-1) {
-        int child = child(parent);
-        if (child+1 < cursor && pq[child+1].w < pq[child].w) {
-            child++;
-        }
-        if (pq[child].w < pq[parent].w) {
-            swap(parent, child);
-            parent = child;
-        }
-        else break;
+#define V vector
+struct Edge { int v, w; };
+struct cmp {
+    bool operator()(Edge& _1, Edge& _2) {
+        return _1.w > _2.w;
     }
-    pq.pop_back();
-    return _min;
-}
+};
 
-void pq_insert(p input) {
-    pq.push_back(input);
-    int child = pq.size()-1;
-    while (child) {
-        int parent = parent(child);
-        if (pq[child].w < pq[parent].w) {
-            swap(parent, child);
-            child = parent;
-        }
-        else break;
-    }
-}
+int N, E;
+V<V<Edge>> adj;
+V<int> dist;
+priority_queue<Edge, V<Edge>, cmp> pq;
 
-void dijkstra() {
+void dijkstra(int start) {
+    dist[start] = 0;
+    pq.push({start, 0});
     while (!pq.empty()) {
-        p _min = pq_pop();
-        int next = _min.v;
-        for (int e=0; e<adj[next].size(); e++) {
-            int dest = adj[next][e].v;
-            int cost = adj[next][e].w;
-            int previous = dist[dest];
-            int updated = dist[next]+cost;
-            if (updated < previous) {
-                dist[dest] = updated;
-                path[dest] = next;
-                pq_insert({dest, updated});
+        Edge nx = pq.top(); pq.pop();
+        for (Edge dt: adj[nx.v]) {
+            int upt = dist[nx.v]+dt.w;
+            if (upt < dist[dt.v]) {
+                dist[dt.v] = upt;
+                pq.push({dt.v, upt});
             }
         }
     }
 }
 
-void initialize() {
-    cin >> V >> E >> start;
-    adj.resize(V+1);
-    dist = (int*)malloc(sizeof(int)*(V+1));
-    fill(dist+1, dist+(V+1), INT_MAX);
-    path = (int*)malloc(sizeof(int)*(V+1));
-    fill(path+1, path+(V+1), -1);
-    int u, v, w;
-    for (int i=0; i<E; i++) {
+int main() {
+    cin.tie(0); cout.tie(0);
+    ios::sync_with_stdio(0);
+    cin >> N >> E;
+    adj.resize(N+1);
+    dist.resize(N+1, INT_MAX);
+    int start; cin >> start;
+    while (E--) {
+        int u, v, w;
         cin >> u >> v >> w;
         adj[u].push_back({v, w});
     }
-    dist[start] = 0;
-    pq.push_back({start, 0});
-}
-
-void print_answer() {
-    cout << "dist:\n";
-    for (int v=1; v<=V; v++) {
-        if (dist[v] != INT_MAX) {
-            cout << dist[v] << "\n";
-        }
-        else cout << "INF\n";
+    dijkstra(start);
+    for (auto it=dist.begin()+1; it!=dist.end(); it++) {
+        if (*it == INT_MAX)
+            cout << "INF" << "\n";
+        else
+            cout << *it << "\n";
     }
-    cout << "path:\n";
-    for (int v=1; v<=V; v++) {
-        cout << path[v] << " ";
-    }
-}
-
-int main(void) {
-    cin.tie(NULL); cout.tie(NULL);
-    ios::sync_with_stdio(false);
-    initialize();
-    dijkstra();
-    print_answer();
     return 0;
 }
