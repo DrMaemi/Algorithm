@@ -26,7 +26,7 @@ int main() {
     int Tl, Al = A.length();
     int l = 0, r = T.size()-1;
     bool found = 0;
-    while (l <= r) {
+    while (1) {
         Tl = T.length();
         int i = l, j = 0;
         found = 0;
@@ -34,6 +34,8 @@ int main() {
             if (T[i+j] == A[j]) {
                 j++;
                 if (j == Al) {
+                    int le = i+Al-1, rs = r-Al+1, re = i+2*(Al-1);
+                    r = rs <= le? re >= Tl? Tl-1: re: r;
                     T.erase(i, Al);
                     l = i-Al+1 > 0? i-Al+1: 0; r -= Al;
                     found = 1; break;
@@ -44,27 +46,27 @@ int main() {
             else {
                 i += j-f[j-1];
                 j = f[j-1];
-                l = i;
             }
         if (!found) break;
         i = r, j = 0;
         found = 0;
         while (i-j >= 0)
-            if (T[i-j] == A[j]) {
+            if (T[i-j] == _A[j]) {
                 j++;
                 if (j == Al) {
-                    T.erase(i-Al+1, Al);
+                    int rs = i-Al+1;
+                    l = l+Al > rs? rs-Al < -1? 0: rs-Al+1: l;
+                    T.erase(rs, Al);
                     int end = T.length()-1;
-                    r = i+Al-1 > end? end: i+Al-1;
+                    r = i-1 > end? end: i+Al-1;
                     found = 1; break;
                 }
             }
             else if (!j)
                 i--;
             else {
-                i -= j-f[j-1];
-                j = f[j-1];
-                r = i;
+                i -= j-_f[j-1];
+                j = _f[j-1];
             }
         if (!found) break;
     }
