@@ -1,9 +1,7 @@
 ## Divide by Zero 2021 and Codeforces Round #714 (Div. 2)
 
-<p>
-  PROBLEMSET - [https://codeforces.com/contest/1513](https://codeforces.com/contest/1513)<br>
-  POST - [https://codeforces.com/topic/90126/en19](https://codeforces.com/topic/90126/en19)
-</p>
+Link - [PROBLEMSET](https://codeforces.com/contest/1513)
+&nbsp;[POST](https://codeforces.com/topic/90126/en19)<br>
 
 <p>
   The scoring distribution:<br>
