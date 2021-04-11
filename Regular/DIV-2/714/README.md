@@ -1,5 +1,6 @@
 ## Divide by Zero 2021 and Codeforces Round #714 (Div. 2)
-Link - [https://codeforces.com/contest/1513](https://codeforces.com/contest/1513)
+
+Link - [https://codeforces.com/contest/1513](https://codeforces.com/contest/1513)<br>
 The scoring distribution:<br>
 **500 -- 1250 -- 1500 -- 2000 -- 2750 -- 3000**
 ---
