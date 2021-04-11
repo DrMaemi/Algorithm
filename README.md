@@ -1,6 +1,6 @@
 ## Divide by Zero 2021 and Codeforces Round #714 (Div. 2)
 
-Link - [PROBLEMSET](https://codeforces.com/contest/1513)
+[PROBLEMSET](https://codeforces.com/contest/1513)
 &nbsp;[POST](https://codeforces.com/topic/90126/en19)<br>
 
 <p>
