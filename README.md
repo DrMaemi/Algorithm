@@ -1,15 +1,20 @@
 ## Divide by Zero 2021 and Codeforces Round #714 (Div. 2)
 
-<p>Link - [https://codeforces.com/contest/1513](https://codeforces.com/contest/1513)</p>
+<p>
+  PROBLEMSET - [https://codeforces.com/contest/1513](https://codeforces.com/contest/1513)<br>
+  POST - [https://codeforces.com/topic/90126/en19](https://codeforces.com/topic/90126/en19)
+</p>
 
-<p>The scoring distribution:</p>
-<p>500 -- 1250 -- 1500 -- 2000 -- 2750 -- 3000</p>
+<p>
+  The scoring distribution:<br>
+  500 -- 1250 -- 1500 -- 2000 -- 2750 -- 3000
+</p>
 
 ---
 
 ### Participation
 
-<p>Realtime, 2021-04-11 23:35 UTC+9></p>
+<p>Realtime, 2021-04-11 23:35 UTC+9</p>
 
 ---
 
@@ -20,6 +25,7 @@
 ---
 
 ### Solved after referring to other source codes
+<br>
 
 ---
 
