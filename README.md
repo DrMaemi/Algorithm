@@ -1,24 +1,30 @@
-## Divide by Zero 2021 and Codeforces Round #714 (Div. 2)
+## Educational Codeforces Round 107 (Rated for Div. 2)
 
-[PROBLEMSET](https://codeforces.com/contest/1513)
-&nbsp;[POST](https://codeforces.com/topic/90126/en19)<br>
+[PROBLEMSET](https://codeforces.com/contest/1511)
+&nbsp;[POST](https://codeforces.com/blog/entry/89562)<br>
 
 <p>
   The scoring distribution:<br>
-  500 -- 1250 -- 1500 -- 2000 -- 2750 -- 3000
+  Unknown
 </p>
 
 ---
 
 ### Participation
 
-<p>Realtime, 2021-04-11 23:35 UTC+9</p>
+<p>Realtime, 2021-04-12 23:35 UTC+9</p>
 
 ---
 
 ### Solved on contest
 
-<p>A.</p>
+<p>A. C.</p>
+
+---
+
+### Tried but couldn't solve
+
+<p>B. D.</p>
 
 ---
 
@@ -28,5 +34,10 @@
 ---
 
 ### Review
-A - 순열 완탐 구현은 무조건 틀린 풀이이다. 주어진 조건을 보고 애드혹으로 풀이할 것.<br>
-B - 비트 연산의 성질, 순열조합 개수에 대한 이해가 부족함.
+<p>
+  A - 규칙을 잘 생각해보면 타입 1, 3이 모두 upvote함을 알 수 있었다. 지금까지 진행했던 모든 코포 문제 중에 가장 쉬웠다.
+</p>
+
+<p>
+  B - O(nq)로 풀었다간 무조건 TLE라고 판단했는데, 이후에 풀이 방법이 떠오르지 않았다. c = 1이면 에라토스테네스의 체로 수를 구해야되나.. 별 생각을 다 하다가 적절한 풀이를 못찾을 것 같아 C로 넘어갔다.
+</p>
