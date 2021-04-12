@@ -4,7 +4,8 @@
 &nbsp;[POST](https://codeforces.com/blog/entry/89562)<br>
 
 <p>
-  The scoring distribution:<br>
+
+  - The scoring distribution:<br>
   Unknown
 </p>
 
