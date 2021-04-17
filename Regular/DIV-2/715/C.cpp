@@ -48,15 +48,3 @@ int main() {
     cout << ans << "\n";
     return 0;
 }
-
-/*
-d1 = max(s1) - min(s1) = 3 - 3 = 0
-d2 = max(s1, s2) - min(s1, s2) = 3 - 1 = 2
-d3 = max(s1, s2, s3) - min(s1, s2, s3) = 3 - 1 = 2
-
-1 2 3
-d1 = 0
-d2 = 2 - 1 = 1
-d3 = 3 -1 = 2
-
-*/
