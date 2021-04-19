@@ -31,7 +31,8 @@ The scoring distribution:<br>
 ---
 
 ### Solved after referring to other source codes
-<br>
+
+<p>C.</p>
 
 ---
 
