@@ -1,11 +1,10 @@
 #include <iostream>
 using namespace std;
 
-int N, M, ans = 0;
-bool used[9] = {0};
+int N, M;
 int A[9];
 
-void f(int depth) {
+void f(int depth, int n) {
     if (depth == M) {
         for (int i=0; i<depth; i++)
             cout << A[i] << " ";
@@ -14,20 +13,16 @@ void f(int depth) {
         return;
     }
 
-    for (int i=1; i<=N; i++) {
-        if (!used[i]) {
-            A[depth] = i;
-            used[i] = 1;
-            f(depth+1);
-            used[i] = 0;
-        }
+    for (int i=n; i<=N; i++) {
+        A[depth] = i;
+        f(depth+1, i);
     }
 }
 
 int main() {
     cin >> N >> M;
 
-    f(0);
-    
+    f(0, 1);
+
     return 0;
 }
